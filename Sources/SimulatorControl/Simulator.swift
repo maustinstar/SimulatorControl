@@ -17,30 +17,59 @@ public struct Simulator {
         self.name = name
     }
     
+    public enum DataNetwork: String {
+        case wifi = "wifi"
+        case cell3g = "3g"
+        case cell4g = "4g"
+        case lte = "lte"
+        case lteA = "lte-a"
+        case ltePlus = "lte+"
+    }
+    
+    public enum WifiMode: String {
+        case searching = "searching"
+        case failed = "failed"
+        case active = "active"
+    }
+    
+    public enum CellularMode: String {
+        case notSupported = "notSupported"
+        case searching = "searching"
+        case failed = "failed"
+        case active = "active"
+    }
+    
+    public enum BatteryState: String {
+        case charging = "charging"
+        case charged = "charged"
+        case failed = "failed"
+        case discharging = "discharging"
+    }
+    
     /// Open the simulator app
     @discardableResult
     public func setStatusBar(
         time: String? = nil,
-        dataNetwork: String? = nil,
-        wifiMode: String? = nil,
+        dataNetwork: DataNetwork? = nil,
+        wifiMode: WifiMode? = nil,
         wifiBars: Int? = nil,
-        cellularMode: String? = nil,
+        cellularMode: CellularMode? = nil,
         cellularBars: Int? = nil,
-        batteryState: String? = nil,
+        batteryState: BatteryState? = nil,
         batteryLevel: Int? = nil
     ) -> Int32 {
         var args: [String] = []
         
         if let time = time { args += ["--time", time] }
         
-        if let dataNetwork = dataNetwork { args += ["--dataNetwork", dataNetwork] }
-        if let wifiMode = wifiMode { args += ["--wifiMode", wifiMode] }
-        if let wifiBars = wifiBars { args += ["--wifiBars", "\(wifiBars)"] }
-        if let cellularMode = cellularMode { args += ["--cellularMode", cellularMode] }
-        if let cellularBars = cellularBars { args += ["--cellularBars", "\(cellularBars)"] }
+        if let dataNetwork = dataNetwork { args += ["--dataNetwork", dataNetwork.rawValue] }
+        if let wifiMode = wifiMode { args += ["--wifiMode", wifiMode.rawValue] }
+        if let wifiBars = wifiBars { args += ["--wifiBars", "\(max(min(wifiBars,3),0))"] }
+        if let cellularMode = cellularMode { args += ["--cellularMode", cellularMode.rawValue] }
+        if let cellularBars = cellularBars { args += ["--cellularBars", "\(max(min(cellularBars,4),0))"] }
         
-        if let batteryState = batteryState { args += ["--batteryState", batteryState] }
-        if let batteryLevel = batteryLevel { args += ["--batteryLevel", "\(batteryLevel)"] }
+        if let batteryState = batteryState { args += ["--batteryState", batteryState.rawValue] }
+        if let batteryLevel = batteryLevel { args += ["--batteryLevel", "\(max(min(batteryLevel,100),0))"] }
         
         return xcrun(["simctl", "boot", name, "override"] + args)
     }
