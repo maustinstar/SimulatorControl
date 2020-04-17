@@ -74,6 +74,17 @@ public struct Simulator {
         return xcrun(["simctl", "status_bar", name, "override"] + args)
     }
     
+    public enum Appearance: String {
+        case dark = "dark"
+        case light = "light"
+    }
+    
+    /// Change appearance style to light or dark
+    @discardableResult
+    public func appearance(_ appearance: Appearance) -> Int32 {
+        xcrun(["simctl", "ui", name, appearance.rawValue])
+    }
+    
     /// Boot a device
     @discardableResult
     public func boot() -> Int32 {
