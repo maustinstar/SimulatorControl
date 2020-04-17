@@ -17,7 +17,7 @@ final class SimulatorControlTests: XCTestCase {
     }
     
     func testScreenshot() {
-        XCTAssert(Simulator.all.screenshot("~/Desktop/app-screenshot.png") == 0)
+        XCTAssert(Simulator.all.screenshot("app-screenshot.png") == 0)
     }
     
     override func tearDown() {
