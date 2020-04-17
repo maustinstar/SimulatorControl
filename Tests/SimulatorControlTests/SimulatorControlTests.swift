@@ -9,9 +9,9 @@ final class SimulatorControlTests: XCTestCase {
         sim.show()
     }
     
-    func testMedia() {
-        XCTAssert(Simulator.all.addMedia("~/Desktop/bimsolutions.png") == 0)
-    }
+//    func testMedia() {
+//        XCTAssert(Simulator.all.addMedia("~/Desktop/image.png") == 0)
+//    }
     
     func testURL() {
         XCTAssert(Simulator.all.openurl("https://apple.com") == 0)
@@ -26,7 +26,7 @@ final class SimulatorControlTests: XCTestCase {
     }
 
     static var allTests = [
-        ("testMedia", testMedia),
+//        ("testMedia", testMedia),
         ("testURL", testURL),
         ("testScreenshot", testScreenshot),
     ]
