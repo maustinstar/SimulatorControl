@@ -1,3 +1,10 @@
+//
+//  SimulatorControl.swift
+//
+//
+//  Created by Michael Verges on 4/16/20.
+//
+
 import Foundation
 
 struct SimulatorControl {

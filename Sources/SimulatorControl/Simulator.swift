@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  Simulator.swift
 //  
 //
 //  Created by Michael Verges on 4/16/20.
@@ -48,45 +48,52 @@ public struct Simulator {
     /// Boot a device
     @discardableResult
     public func boot() -> Int32 {
-        return xcrun(["simctl", "boot", name])
+        xcrun(["simctl", "boot", name])
     }
     
     /// Open the simulator app
     @discardableResult
     public func show() -> Int32 {
-        return open(["-a", "Simulator"])
+        open(["-a", "Simulator"])
     }
     
     /// Open a URL in a device
     /// - Parameter url: webpage `https://` or deeplink (e.g. `maps://`)
     @discardableResult
     public func openurl(_ url: String) -> Int32 {
-        return xcrun(["simctl", "openurl", name, url])
+        xcrun(["simctl", "openurl", name, url])
     }
     
     /// Add photos, live photos, videos, or contacts to the library of a device
     /// - Parameter path: media filepaths
     @discardableResult
     public func addMedia(_ path: String...) -> Int32 {
-        return xcrun(["simctl", "addmedia", name] + path)
+        xcrun(["simctl", "addmedia", name] + path)
+    }
+    
+    /// Install an app on a device
+    /// - Parameter path: media filepaths
+    @discardableResult
+    public func install(_ path: String) -> Int32 {
+        xcrun(["simctl", "install", name, path])
     }
     
     /// Capture screenshot of simulator
     /// - Parameter output: filepath to store the screenshot
     @discardableResult
     public func screenshot(_ output: String) -> Int32 {
-        return xcrun(["simctl", "io", name, "screenshot", output])
+        xcrun(["simctl", "io", name, "screenshot", output])
     }
     
     /// Erase a device's contents and settings
     @discardableResult
     public func erase() -> Int32 {
-        return xcrun(["simctl", "erase", name])
+        xcrun(["simctl", "erase", name])
     }
     
     /// Shutdown a device
     @discardableResult
     public func shutdown() -> Int32 {
-        return xcrun(["simctl", "shutdown", name])
+        xcrun(["simctl", "shutdown", name])
     }
 }
