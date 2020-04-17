@@ -2,6 +2,9 @@
 
 Define simulator automations in Swift. SimulatorControl, built on simctl, is a SwiftPackage that lets you define procedural simulator actions, like taking screenshots.
 
+![Sample code](banner.png)
+Make screenshots easy.
+
 ## Getting Started
 
 ### 1. Create a new Target
