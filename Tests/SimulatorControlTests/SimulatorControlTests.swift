@@ -6,7 +6,6 @@ final class SimulatorControlTests: XCTestCase {
     override func setUp() {
         let sim = Simulator("iPhone 11")
         sim.boot()
-        sim.show()
     }
     
 //    func testMedia() {
