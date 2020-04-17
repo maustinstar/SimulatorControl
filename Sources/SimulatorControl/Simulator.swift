@@ -71,7 +71,7 @@ public struct Simulator {
         if let batteryState = batteryState { args += ["--batteryState", batteryState.rawValue] }
         if let batteryLevel = batteryLevel { args += ["--batteryLevel", "\(max(min(batteryLevel,100),0))"] }
         
-        return xcrun(["simctl", "boot", name, "override"] + args)
+        return xcrun(["simctl", "status_bar", name, "override"] + args)
     }
     
     /// Boot a device
