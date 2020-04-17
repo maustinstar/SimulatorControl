@@ -78,6 +78,13 @@ public struct Simulator {
         xcrun(["simctl", "install", name, path])
     }
     
+    /// Install an app on a device
+    /// - Parameter path: media filepaths
+    @discardableResult
+    public func launch(_ bundleID: String) -> Int32 {
+        xcrun(["simctl", "launch", name, bundleID])
+    }
+    
     /// Capture screenshot of simulator
     /// - Parameter output: filepath to store the screenshot
     @discardableResult
