@@ -9,10 +9,6 @@ final class SimulatorControlTests: XCTestCase {
         sim.show()
     }
     
-    func testErase() {
-        XCTAssert(Simulator.all.erase() == 0)
-    }
-    
     func testMedia() {
         XCTAssert(Simulator.all.addMedia("~/Desktop/bimsolutions.png") == 0)
     }
@@ -29,7 +25,9 @@ final class SimulatorControlTests: XCTestCase {
 //        Simulator.all.shutdown()
     }
 
-//    static var allTests = [
-//        ("testLaunch", testLaunch),
-//    ]
+    static var allTests = [
+        ("testMedia", testMedia),
+        ("testURL", testURL),
+        ("testScreenshot", testScreenshot),
+    ]
 }
